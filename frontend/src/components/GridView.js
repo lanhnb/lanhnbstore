@@ -87,11 +87,14 @@ const Wrapper = styled.section`
  
 button.b11 {
     float: right;
-    margin-right: -380px;
-    margin-top: -82px;
+    margin-right: -383px;
+    margin-top: -38px;
     border: none;
     font-size: 29px;
     background:none;
+}
+.main-product {
+    margin-top: -42px;
 }
 .name{
     margin-left:10px;

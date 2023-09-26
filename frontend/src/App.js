@@ -36,6 +36,7 @@ import OrdersDetail from "./components/admin/Detail/OrderDetail";
 import OrderList from "./components/admin/list/Orderlist";
 import Modals from './components/Modals';
 import Foots from "./components/foot";
+import Productss from './components/Products';
 
 
 
@@ -84,6 +85,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/modals" element={<Modals />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/products" element={<Productss />} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/singleproduct/:id" element={<SingleProduct />} />
           {/* <Route path="/checkout-success" element={<CheckoutSuccess />} /> */}

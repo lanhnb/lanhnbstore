@@ -105,13 +105,8 @@
 div#mySidebar {
   z-index: 1000;
 }
-/* Home */
-.w3-container {
-  padding: 0.01em 0px;
-}
-
-.home-container {
-  padding: 2rem 2rem;
+.main-product {
+  margin-top: -46px;
 }
 .home-container h2 {
   font-size: 40px;

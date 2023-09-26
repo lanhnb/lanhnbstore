@@ -207,10 +207,25 @@ const FilterSmal = () => {
 export default FilterSmal;
 
 const Wrapper = styled.section`
+.fmDymx {
+    margin-top: 1rem;
+}
 .swiper-pagination.swiper-pagination-progressbar.swiper-pagination-horizontal {
     background: none;
     display:none;
 }
+button.b11 {
+    float: right;
+    margin-right: -383px;
+    margin-top: -38px;
+    border: none;
+    font-size: 29px;
+    background:none;
+}
+.main-product {
+    margin-top: -42px;
+}
+
 .productCaroul {
     width: 368px;
     margin-left: 0px;

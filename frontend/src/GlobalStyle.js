@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+.fmDymx {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
 
 * {
   margin: 0;
@@ -8,9 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
   font-family: "Work Sans", sans-serif;
 }
-w3-container{
-  padding: 1px 1px;
-}
+
 
 html {
   font-size: 62.5%;
@@ -86,9 +89,8 @@ li {
 
 ${"" /* resuable code section  */}
 
-.container {
-  max-width: 120rem;
-  margin: 0 auto;
+.w3-container, .w3-panel {
+  padding: 0.01em 0px;
 }
 
 .grid {
@@ -143,7 +145,7 @@ input, textarea{
     color: ${({ theme }) => theme.colors.black};
     padding: 5px;
     border: 1px solid ${({ theme }) => theme.colors.border};
-    b
+    border-radius:5px;
     
     
    box-shadow: ${({ theme }) => theme.colors.shadowSupport};
@@ -164,7 +166,7 @@ input, textarea{
 @media (max-width: ${({ theme }) => theme.media.tab}) {
     .container {
     max-width: 130rem;
-    padding: 0 3.2rem;
+    
   }
   }
 

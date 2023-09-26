@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import FilterSmal from "./FilterSmal";
 import FilterSection from "./FilterSection";
 
-const Products = () => {
+const Productss = () => {
   const [toggle, setToggle] = useState(true)
  
 
@@ -73,4 +73,4 @@ const Wrapper = styled.section`
     }
   }
   `;
-export default Products
+export default Productss

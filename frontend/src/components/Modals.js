@@ -8,19 +8,20 @@ const Modals = () => {
   const [isShown, setIsShown] = useState(false);
   const [hideF, sethideF] = useState(true)
   const navigate = useNavigate();
+  
   const handleClick = event => {
       // 👇️ toggle shown state
       setIsShown(current => !current);
-      
+      //  setIsShown(true);
       navigate("/")
 
       // 👇️ or simply set it to true
-      // setIsShown(true);
+     
   };
 
   return (
     <Wrapper>
-       {!isShown && (
+       {!isShown ? (
                        <div className="w3-col m11 s11 laModal">
                         <div>
                         <b>Chính sách khách hàng</b>
@@ -127,10 +128,10 @@ const Modals = () => {
                      <div className="modal-footer">
                        <b> Lanhnb.store Cảm ơn sự quan tâm của Bạn và mong nhận được sự ủng hộ, giúp đỡ.</b>
                        
-                           <button className="b11" onClick={handleClick}><FaTimes/></button>
+                           <button className="b11" onClick=''><FaTimes/></button>
                      </div>
                      </div>
-                    )}
+                    ):("")}
 
      
       
@@ -150,6 +151,7 @@ button.b11 {
   background-color: #8e4545;
   border: none;
   color: white;
+  cursor:pointer;
 }
 button.b111 {
   padding: 5px;

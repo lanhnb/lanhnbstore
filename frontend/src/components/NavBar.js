@@ -84,7 +84,7 @@ const NavBar = () => {
           <Link to="/" className="w3-bar-item w3-button w3-red">Home</Link>
           <Link to="/nhadat" className="w3-bar-item w3-button"> <FaHive/>  Nhà đất</Link>
           <Link to="/xkld" className="w3-bar-item w3-button"><FaFighterJet/>  Xuất khẩu lao động</Link>
-          <Link to="/shop" className="w3-bar-item w3-button"><FaCartPlus /> Shop</Link>
+          <Link to="/products" className="w3-bar-item w3-button"><FaCartPlus /> Shop</Link>
           <Link to="/contact" className="w3-bar-item w3-button"><FaCartPlus /> Contact</Link>
           
                           
