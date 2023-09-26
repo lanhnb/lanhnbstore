@@ -107,7 +107,7 @@ div#mySidebar {
 }
 /* Home */
 .w3-container {
-  padding: 0.01em 0px;
+  padding: 0px;
 }
 
 .home-container {
@@ -435,4 +435,5 @@ p.text-center.p_f {
 a#openClose {
   font-size: 33px;
 }
+ol.list_foot {padding-left: 34px;}
 

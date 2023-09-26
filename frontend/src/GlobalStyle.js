@@ -137,10 +137,11 @@ ${"" /* resuable code section  */}
     }
 
 input, textarea{
-    max-width: 50rem;
+    max-width: 60rem;
     color: ${({ theme }) => theme.colors.black};
     padding: 5px;
     border: 1px solid ${({ theme }) => theme.colors.border};
+    border-radius:5px;
     
     
    box-shadow: ${({ theme }) => theme.colors.shadowSupport};
