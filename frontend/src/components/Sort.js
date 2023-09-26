@@ -40,12 +40,12 @@ const Wrapper = styled.section`
     display:flex;
     justify-content: space-between;
     padding-right:50px;
-    margin-top: 5rem;
+    margin-top: 2rem;
 
     .sorting-list--grid{
         display: flex;
         gap: 2rem;
-        margin-left: 70px;
+        margin-left: 20px;
 
         .sort-btn{
             padding: 0.2rem 1rem;

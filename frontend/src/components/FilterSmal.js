@@ -215,7 +215,9 @@ const Wrapper = styled.section`
     width: 368px;
     margin-left: 0px;
 }
-
+.swiper-wrapper {
+    margin-left: 0px;
+}
 .swiper-button-prev {
     margin-top: -54px;
     color:red;
@@ -288,8 +290,8 @@ const Wrapper = styled.section`
         margin-top:30px
         input{           
             padding: 5px;
-            width:350px;
-            border-radius:10px;
+            width:50px;
+            border-radius:5px;
         }
         font-size:18px;
     }

@@ -8,7 +8,9 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
   font-family: "Work Sans", sans-serif;
 }
-
+w3-container{
+  padding: 1px 1px;
+}
 
 html {
   font-size: 62.5%;
@@ -137,11 +139,11 @@ ${"" /* resuable code section  */}
     }
 
 input, textarea{
-    max-width: 60rem;
+    max-width: 70rem;
     color: ${({ theme }) => theme.colors.black};
     padding: 5px;
     border: 1px solid ${({ theme }) => theme.colors.border};
-    border-radius:5px;
+    b
     
     
    box-shadow: ${({ theme }) => theme.colors.shadowSupport};

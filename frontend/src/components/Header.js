@@ -21,7 +21,7 @@ function Header() {
 
 
 const MainHeader =styled.header`
-    height: 10rem;
+    height: 5rem;
     backround-color:${({theme})=>theme.colors.bg};
     
     justify-content: space-between;
@@ -29,8 +29,6 @@ const MainHeader =styled.header`
     align-items: center;
     position: relative;
 
-    .logo{
-        height: 25rem;
-    }
+   
 `;
 export default Header;

@@ -87,8 +87,8 @@ const Wrapper = styled.section`
  
 button.b11 {
     float: right;
-    margin-right: -350px;
-    margin-top: -45px;
+    margin-right: -380px;
+    margin-top: -82px;
     border: none;
     font-size: 29px;
     background:none;

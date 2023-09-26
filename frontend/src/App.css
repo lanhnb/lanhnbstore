@@ -107,11 +107,11 @@ div#mySidebar {
 }
 /* Home */
 .w3-container {
-  padding: 0px;
+  padding: 0.01em 0px;
 }
 
 .home-container {
-  padding: 2rem 4rem;
+  padding: 2rem 2rem;
 }
 .home-container h2 {
   font-size: 40px;
@@ -435,5 +435,4 @@ p.text-center.p_f {
 a#openClose {
   font-size: 33px;
 }
-ol.list_foot {padding-left: 34px;}
 
