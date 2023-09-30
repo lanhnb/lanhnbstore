@@ -34,7 +34,7 @@ import Products from "./components/admin/summary-components/Products";
 import Orders from "./components/admin/summary-components/Order";
 import OrdersDetail from "./components/admin/Detail/OrderDetail";
 import OrderList from "./components/admin/list/Orderlist";
-import Modals from './components/Modals';
+
 import Foots from "./components/foot";
 import Productss from './components/Products';
 
@@ -83,7 +83,7 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/modals" element={<Modals />} />
+         
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<Productss />} />
           <Route path="/contact" element={<Contact/>} />

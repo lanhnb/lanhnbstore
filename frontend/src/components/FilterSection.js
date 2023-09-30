@@ -184,10 +184,11 @@ const Wrapper = styled.section`
     }
     .filter-search{
         input{
-            padding: 0.6rem 1rem;
+            padding: 4px;
             width:100%;
+           
         }
-        font-size:18px;
+        font-size:15px;
     }
 
     .filter-color{

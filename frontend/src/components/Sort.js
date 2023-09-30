@@ -39,7 +39,7 @@ export default Sort;
 const Wrapper = styled.section`
     display:flex;
     justify-content: space-between;
-    padding-right:50px;
+    padding-right:127px;
     margin-top: 2rem;
 
     .sorting-list--grid{

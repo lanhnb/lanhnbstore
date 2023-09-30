@@ -26,43 +26,41 @@ const GridView = ({ products }) => {
     return (
         <Wrapper>
             <div className="row1">
-                
-            
-            <button className="b11" onClick={handleClick}><span onClick={()=>sethideF(!hideF)}>
-                {hideF ? <FcClearFilters /> : <FcFilledFilter/>}
+
+
+                <button className="b11" onClick={handleClick}><span onClick={() => sethideF(!hideF)}>
+                    {hideF ? <FcClearFilters /> : <FcFilledFilter />}
                 </span></button>
             </div>
             <div className="row">
-            <div className="w3-col ">
-                
-                    
+                <div className="w3-col ">
+
+
                     <div className="w3-col m3 s12 ">
-                    {/* 👇️ show elements on click */}
-                    {!isShown && (
-                        <div className="container grid grid-filter-column">
-                            <div className="filter1" id="filter1">
+                        {/* 👇️ show elements on click */}
+                        {!isShown && (
+                            <div className="container grid grid-filter-column">
+                                <div className="filter1" id="filter1">
 
 
-                                <FilterSmal />
-                                <div className="fillSm">
-                                    <FilterSection />
+                                    <FilterSmal />
+                                    <div className="fillSm">
+                                        <FilterSection />
+                                    </div>
+
                                 </div>
-
                             </div>
-                        </div>
-                    )}
+                        )}
 
-                </div>
-                <div className="w3-col m9 s12 ">
-                    
-
+                    </div>
+                    <div className="w3-col m9 s12 ">
                         {products.map((curElem) => {
                             return <div className="w3-col m3 s6"><Product key={curElem.id} {...curElem} />
                             </div>
                         })}
-                   
+
+                    </div>
                 </div>
-            </div>
             </div>
 
         </Wrapper>

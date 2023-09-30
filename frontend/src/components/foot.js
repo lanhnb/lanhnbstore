@@ -1,9 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import Nav from './Nav';
-import NavBar from './NavBar';
-import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 

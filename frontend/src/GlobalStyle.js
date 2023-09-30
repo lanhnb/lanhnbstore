@@ -143,9 +143,10 @@ ${"" /* resuable code section  */}
 input, textarea{
     max-width: 70rem;
     color: ${({ theme }) => theme.colors.black};
-    padding: 5px;
+    padding: 4px;
     border: 1px solid ${({ theme }) => theme.colors.border};
     border-radius:5px;
+    
     
     
    box-shadow: ${({ theme }) => theme.colors.shadowSupport};

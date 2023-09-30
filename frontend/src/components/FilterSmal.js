@@ -68,6 +68,7 @@ const FilterSmal = () => {
                             <p className="byName">Filter by names</p>
                             <form onSubmit={(e) => e.preventDefault()}>
                                 <input
+                                    id="search"
                                     type="text"
                                     name="text"
                                     value={text}
@@ -301,14 +302,17 @@ button.b11 {
     .filter_price {
         margin-top: -24px;
     }
+    input#search {
+        width:313px;
+    }
     .filter-search{
         margin-top:30px
         input{           
-            padding: 5px;
-            width:50px;
+            padding: 4px;
+            
             border-radius:5px;
         }
-        font-size:18px;
+        font-size:15px;
     }
 
     .filter-color1{

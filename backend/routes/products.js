@@ -1,4 +1,6 @@
 const { Product } = require("../models/product");
+const { Xkld } = require("../models/xkld");
+const { NhaDat } = require("../models/nhadat");
 const { isAdmin } = require("../middleware/auth");
 const cloudinary = require("../utils/cloudinary");
 
