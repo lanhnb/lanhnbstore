@@ -33,13 +33,13 @@ const ListView = ({ products }) => {
                 {products.map((curElem) => {
                     const { _id, name, image, price, description } = curElem;
                     return (
-                       <div className="w3-col-m12 d-flex">
-                            <div className="w3-col-m4">
+                       <div className="w3-col m12 d-flex">
+                            <div className="w3-col m6">
                                 <figure>
                                     <img src={image[0]?.url} alt={name} />
                                 </figure>
                             </div>
-                            <div className="w3-col m8">
+                            <div className="w3-col m6">
 
                                 <div className="cart-data">
                                     <h3>{name}</h3>

@@ -31,30 +31,37 @@ const Register = () => {
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
-        <h2>Register</h2>
-        <input
-          type="text"
-          placeholder="name"
-          onChange={(e) => setUser({ ...user, name: e.target.value })}
-        />
-        <input
-          type="email"
-          placeholder="email"
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-        />
-        <button>
-          {auth.rigisterStatus === "pending" ? "Submitting..." : "Register"}
-        </button>
-        {auth.registerStatus === "rejected" ? (
-          <p>{auth.registerError}</p>
-        ) : null}
+        <div id="home11">
+          <h2>Register</h2>
+          <input
+            type="text"
+            placeholder="name"
+            onChange={(e) => setUser({ ...user, name: e.target.value })}
+          />
+          <input
+            type="email"
+            placeholder="email"
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+          />
+          <button>
+            {auth.rigisterStatus === "pending" ? "Submitting..." : "Register"}
+          </button>
+          {auth.registerStatus === "rejected" ? (
+            <p>{auth.registerError}</p>
+          ) : null}
+          </div >
       </StyledForm>
-    </>
+    
+      <div className="khoang" style={{ "height": "392px" }}>
+
+      </div> 
+        </>   
+    
   );
 };
 

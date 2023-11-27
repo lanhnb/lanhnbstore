@@ -21,14 +21,10 @@ router.get("/", isAdmin, async(req, res) =>{
 router.get("/find/:id", isUser, async(req, res) =>{
     try{
         const users = await User.findById(req.params.id);
-        res.status(200).send({
-            _id: users._id,
-            name: users.name,
-            email:users.email,
-            isAdmin: users.isAdmin,
-        });
+        res.status(200).send(users);
     }catch(err){
         res.status(500).send(err);
+        
     }
 });
 

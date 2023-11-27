@@ -5,9 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AppProvider } from './components/ProductContext';
 import { FilterContextProvider } from "./components/FilterContext";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from "react-redux";
-
+import { StoreProvider } from './components/payment/Store';
+import { HelmetProvider } from 'react-helmet-async';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 import productsReducer, { productsFetch } from "./components/slices/productsSlice";
 import cartReducer, { getTotals } from "./components/slices/cartSlice";
@@ -39,24 +41,28 @@ store.dispatch(getTotals());
 
 
 root.render(
- 
-    
 
-    <Provider store={store}>
 
+
+  <Provider store={store}>
+    <StoreProvider>
       <AppProvider>
         <FilterContextProvider>
-
-          <App />
+          <HelmetProvider>
+            <PayPalScriptProvider >
+              <App />
+            </PayPalScriptProvider>
+          </HelmetProvider>
 
         </FilterContextProvider>
 
       </AppProvider>
-      </Provider>
-     
-      );
 
-      // If you want to start measuring performance in your app, pass a function
-      // to log results (for example: reportWebVitals(console.log))
-      // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-      reportWebVitals();
+    </StoreProvider >
+  </Provider>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

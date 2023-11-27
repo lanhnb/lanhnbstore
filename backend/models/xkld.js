@@ -10,6 +10,7 @@ const xkldSchema = new mongoose.Schema(
     timex: { type: Number, required: false },
     starsx: { type: Number, required: false },
     salaryx: { type: Number, required: false },
+    ifox: { type: String, required: true },
     imagex: { type: Object, required: false },
    
   },

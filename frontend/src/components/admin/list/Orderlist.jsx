@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import moment from 'moment';
 import { ordersEdit } from '../../slices/ordersSlice';
+import { ordersDelete } from "../../slices/ordersSlice";
 
 
 import styled from "styled-components";
@@ -21,15 +22,17 @@ React.useEffect(()=>{
 
 }, [dispatch]);
 
-const rows = list && list.map((order) =>{
+const rows = list && list.map(order =>{
+  
     return{
         id: order._id,
-        cName: order.shipping, //.name
-        amount:(order.total)?.toLocaleString(),
-        dStatus: order.delivery_status,
+        cName: order.shippingAddress.fullName, //.name
+        amount:(order.totalPrice)?.toLocaleString(),
+        dStatus: order.isDelivered, 
         date: moment(order.createdAt).fromNow(),
 
         };
+        
 });
 
 
@@ -46,8 +49,8 @@ const columns = [
         return <div>
             
             {params.row.dStatus === "pending" ? (<Pending>Pending</Pending>):
-            params.row.dStatus === "dispatched" ? (<Dispathched>Dispatched</Dispathched>):
-            params.row.dStatus === "delivery" ? (<Delivered>Delivered</Delivered>): ("error")}
+            params.row.dStatus === true ? (<Dispathched>Dispatched</Dispathched>):
+            params.row.dStatus === false ? (<Delivered>Delivered</Delivered>): ("error")}
         </div>;
     },
     },
@@ -63,37 +66,42 @@ const columns = [
       width: 220,
       renderCell:(params)=>{
         return <Actions>
-                <DispatchBtn onClick={()=> handleOrderDispatch(params._id)}>Dispatched</DispatchBtn>
-                <DeliveryBtn onClick={()=> handleOrderDelivery(params._id)}>Delivery</DeliveryBtn>
-                <View className='button' onClick={()=> navigate(`/order/${params.row.id}`)}>View</View>
+                <DispatchBtn className='button' onClick={()=> handleOrderDispatch(params.row.id)}>Dispatched</DispatchBtn>
+                <DeliveryBtn className='button' onClick={()=> handleOrderDelivery(params.row.id)}>Delivery</DeliveryBtn>
+                <Delete className='button' onClick={()=>handleDelete(params.row.id)}> Delete </Delete>
+                <View className='button' onClick={()=> navigate(`/orders/${params.row.id}`)}>View</View>
             </Actions>;       
         },
       
     },
   ];
 
-  const handleOrderDispatch = (_id) =>{
+  const handleOrderDispatch = (id) =>{
     dispatch(ordersEdit({
-        _id,
-        delivery_status: "dispatched",
+        id,
+        isDelivered: true,
     }));
   }
 
-  const handleOrderDelivery = (_id) =>{
+  const handleOrderDelivery = (id) =>{
     dispatch(ordersEdit({
-        _id,
-        delivery_status: "Delivery",
+        id,
+        isDelivered: false,
     }));
   }
-   
+  
+  const handleDelete = (_id)=>{
+    if (window.confirm('Are you sure to delete?')){
+    dispatch(ordersDelete(_id));}
+};
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 650, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
+            paginationModel: { page: 0, pageSize: 10 },
           },
         }}
         pageSizeOptions={[5, 10]}
@@ -111,10 +119,12 @@ const Actions =styled.div`
     .button{
         border: none;
         outline: none;
-        padding: 5px;
+        padding: 2px;
         color: white;
         border-radius: 3px;
         cursor: pointer;
+        font-size:12px;
+        color:black;
 
     };
 
@@ -125,12 +135,14 @@ const DispatchBtn = styled.div`
     background-color: rgb(38, 198, 249);
     padding: 3px 5px;
   border-radius: 3px;
+  cursor: pointer;
  `;
 
 const DeliveryBtn = styled.div`
   background-color: rgb(102, 108, 255);
   padding: 3px 5px;
   border-radius: 3px;
+  cursor: pointer;
 `;
 const View = styled.div`
   background-color: rgb(114, 255, 40);
@@ -159,6 +171,10 @@ const Delivered = styled.div`
   border-radius: 3px;
   font-size: 14px;
 `;
+const Delete = styled.button`
+background-color:rgb(255, 77, 77)
+`;
+
 
 
 

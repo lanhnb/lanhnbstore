@@ -6,11 +6,12 @@ const login = require("./routes/login");
 const orders = require("./routes/orders");
 const stripe = require("./routes/stripe");
 const productsRoute = require("./routes/products.js");
+const xkldsRoute = require("./routes/xkld.js")
 const users = require("./routes/users")
 const result = require("./routes/uploadRouter")
 const path = require('path');
-const products = require("./products");
-
+const products = require("./products.js");
+const xklds = require("./xklds.js");
 const cloudinary = require("./utils/cloudinary");
 
 const fs = require('fs');
@@ -19,6 +20,15 @@ const uploadRouter = require("./routes/uploadRouter");
 
 
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+
+app.get("/api/keys/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
+});
+app.get("/api/keys/google", (req, res) => {
+  res.send({ key: process.env.GOOGLE_API_KEY || "" });
+});
 
 require("dotenv").config();
 
@@ -32,7 +42,7 @@ app.use("/api/stripe", stripe);
 app.use("/api/products", productsRoute);
 app.use("/api/users", users);
 app.use("/api/upload", uploadRouter);
-
+app.use("/api/xklds", xkldsRoute);
 
 
 app.get("/", (req, res) => {
@@ -41,6 +51,10 @@ app.get("/", (req, res) => {
 
 app.get("/products", (req, res) => {
   res.send(products);
+});
+
+app.get("/xklds", (req, res) => {
+  res.send(xklds);
 });
 
 app.get("/users", (req, res) => {

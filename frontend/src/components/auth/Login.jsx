@@ -30,23 +30,30 @@ const Login = () => {
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <input
-          type="email"
-          placeholder="email"
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-        />
-        <button>
-          {auth.loginStatus === "pending" ? "Submitting..." : "Login"}
-        </button>
-        {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
+        
+        <div id="home11" className="w3-col m12 s12 w3-container contt">
+          <h2>Login</h2>
+          <input
+            type="email"
+            placeholder="email"
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+          />
+          <button>
+            {auth.loginStatus === "pending" ? "Submitting..." : "Login"}
+          </button>
+          {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
+          </div > 
       </StyledForm>
-    </>
+      <div className="khoang" style={{ "height": "652px" }}>
+
+      </div>
+      </>
+    
   );
 };
 

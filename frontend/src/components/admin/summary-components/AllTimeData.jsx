@@ -4,45 +4,83 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { url, setHeaders } from "../../slices/api";
 
-const AllTimeData =()=>{
+const AllTimeData = () => {
 
-    const {items} = useSelector(state => state.products)
+    const { items } = useSelector(state => state.products)
+    const [users, setUser] = useState([])
     const [income, setIncome] = useState([]);
-    function compare(a,b){
-        if(a.id < b.id){
-          return 1
+    const [orders, setOrders] = useState([]);
+    function compare(a, b) {
+        if (a.id < b.id) {
+            return 1
         }
-        if(a.id > b.id){
-          return -1
+        if (a.id > b.id) {
+            return -1
         }
         return 0;
-    
+
+    }
+
+    // User Stats
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(`${url}/users/stats`, setHeaders())
+
+        res.data.sort(compare)
+        console.log(res.data)
+        setUser(res.data);
+        
+
+      } catch (err) {
+        console.log(err)
       }
-     //Income Stats
-     useEffect(() =>{
-        async function fetchData(){
-        try{
-            const res =  await axios.get(`${url}/orders/income`, setHeaders())
 
-            res.data.sort(compare)
-            setIncome(res.data);
-            
+    }
+    fetchData()
+  }, [])
 
-        }catch(err){
-            console.log(err)
+    //Income Stats
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const res = await axios.get(`${url}/orders/income`, setHeaders())
+
+                res.data.sort(compare)
+                setIncome(res.data);
+
+
+            } catch (err) {
+                console.log(err)
+            }
+
         }
+        fetchData()
+    }, [])
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const res = await axios.get(`${url}/orders/stats`, setHeaders())
+
+                res.data.sort(compare)
+                setOrders(res.data);
+
+
+            } catch (err) {
+                console.log(err)
+            }
 
         }
         fetchData()
     }, [])
 
 
-
     return <Main>
         <h3> All Times</h3>
         <Infor>
             <Title>Users</Title>
-            <Data></Data>
+            <Data>{users[0]?.total}</Data>
         </Infor>
         <Infor>
             <Title>Products</Title>
@@ -50,11 +88,11 @@ const AllTimeData =()=>{
         </Infor>
         <Infor>
             <Title>Orders</Title>
-            <Data>200</Data>
+            <Data>{orders[0]?.total}</Data>
         </Infor>
         <Infor>
             <Title>Earnings</Title>
-            <Data>${income[0]?.total ? income[0]?.total:" "}</Data>
+            <Data>${income[0]?.total ? income[0]?.total : " "}</Data>
         </Infor>
     </Main>
 };

@@ -61,7 +61,7 @@ const SingleProduct = () => {
           <PageNavigation title={name} />
           <Container>
 
-            <div className="w3-col m12 s12">
+            <div id="home11" className="w3-col m12 s12">
               <div className="w3-col m6 s12">
                 <div className="product-images1">
                   {/* <img src={image?.url} alt={name}/> */}
@@ -93,12 +93,16 @@ const SingleProduct = () => {
                     Add to Cart
                   </button>
                 </div>
+                <div className="khoang" style={{ "height": "100px" }}>
               </div>
+              </div>
+             
             </div>
+            
           </Container>
         </>
 
-      )};
+      )}
     </Wrapper>
   )
 };

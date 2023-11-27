@@ -46,7 +46,8 @@ const Wrapper = styled.section`
         display: flex;
         gap: 2rem;
         margin-left: 20px;
-
+        height:32px;
+        
         .sort-btn{
             padding: 0.2rem 1rem;
             border:none;

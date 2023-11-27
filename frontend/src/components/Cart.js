@@ -9,12 +9,16 @@ import {
   removeFromCart,
 } from "./slices/cartSlice";
 
+
+import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
-import PayButton from "./PayButton";
+import PayButton from "./payment/PayButton";
+import { height } from "@mui/system";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
+ 
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,8 +39,12 @@ const Cart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+  const checkoutHandler = () => {
+    navigate('/shipping');
+  };
   return (
-    <div className="cart-container">
+
+    <div id="home11" className="cart-container">
       <h2>Shopping Cart</h2>
       {cart.cartItems.length === 0 ? (
         <div className="cart-empty">
@@ -73,7 +81,7 @@ const Cart = () => {
               cart.cartItems.map((cartItem) => (
                 <div className="cart-item" key={cartItem._id}>
                   <div className="cart-product">
-                    <img src={cartItem.image[0]?.url} alt={cartItem.name} />
+                    <img src={cartItem.image[0]?.url} alt={cartItem.name}  />
                     <div>
                       <h3>{cartItem.name}</h3>
                       <p>{cartItem.desc}</p>
@@ -94,6 +102,7 @@ const Cart = () => {
                     ${cartItem.price * cartItem.cartQuantity}
                   </div>
                 </div>
+                
               ))}
           </div>
           <div className="cart-summary">
@@ -107,15 +116,23 @@ const Cart = () => {
               </div>
               <p>Taxes and shipping calculated at checkout</p>
               {auth._id ? (
-                <PayButton cartItems={cart.cartItems} />
-               ) : (
+                // <PayButton cartItems={cart.cartItems} />
+                <Button
+                      type="button"
+                      variant="primary"
+                      onClick={checkoutHandler}
+                      disabled={cart.cartItems.length === 0}
+                    >
+                      Proceed to Checkout
+                    </Button>
+              ) : (
                 <button
                   className="cart-login"
                   onClick={() => navigate("/login")}
                 >
                   Login to Check out
                 </button>
-              )} 
+              )}
 
               <div className="continue-shopping">
                 <Link to="/">
@@ -139,8 +156,13 @@ const Cart = () => {
           </div>
         </div>
       )}
+      <div className="khoang" style={{"height" : "452px"}}>               
+        </div>  
     </div>
+
+
   );
 };
 
 export default Cart;
+

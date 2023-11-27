@@ -84,9 +84,18 @@ const Transactions = () => {
                             
                                 {
                                     orders?.map((orders, index) => <tr>
-                                         <td>{orders.shipping}</td>
+                                          <td>  
+                                            {orders.isDelivered === "pending" ? (
+                                            "Pending"
+                                            ) : orders.isDelivered === true ? (
+                                            "Dispatched"
+                                         ) : orders.isDelivered === false ? (
+                                            "Delivery"
+                                            ) : ("error")}
+                                        
+                                         </td>
                                         <td>{moment(orders.createdAt).fromNow()}</td>
-                                        <td>${(orders.total).toLocaleString()}</td>
+                                        <td>${(orders.totalPrice).toLocaleString()}</td>
                                         </tr>)}
                                 
                             </tbody>

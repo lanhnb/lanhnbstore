@@ -21,7 +21,7 @@ const GridView = ({ products }) => {
         // 👇️ or simply set it to true
         // setIsShown(true);
     };
-
+    
 
     return (
         <Wrapper>
@@ -36,7 +36,7 @@ const GridView = ({ products }) => {
                 <div className="w3-col ">
 
 
-                    <div className="w3-col m3 s12 ">
+                    <div className="w3-col m2 s12 ">
                         {/* 👇️ show elements on click */}
                         {!isShown && (
                             <div className="container grid grid-filter-column">
@@ -53,7 +53,7 @@ const GridView = ({ products }) => {
                         )}
 
                     </div>
-                    <div className="w3-col m9 s12 ">
+                    <div className="w3-col m10 s12 ">
                         {products.map((curElem) => {
                             return <div className="w3-col m3 s6"><Product key={curElem.id} {...curElem} />
                             </div>

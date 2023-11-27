@@ -16,16 +16,29 @@ export const usersFetch = createAsyncThunk("users/usersFetch", async() =>{
     }
 });
 
-export const userDelete = createAsyncThunk("users/userDelete", async() =>{
+export const userDelete = createAsyncThunk("users/userDelete", async(_id) =>{
     try{
-        const response = await axios.delete(`${url}/users`, setHeaders());
+        const response = await axios.delete(`${url}/users/${_id}`, setHeaders());
         return response.data;
     } catch(error){
         console.log(error.response.data);
         toast.error(error.response.data)
     }
 });
-
+// UPDATE USERS
+export const productsEdit = createAsyncThunk(
+    "users/usersEdit",
+    async (values) => {
+      try {
+        const response = await axios.put(`${url}/users/${values.user._id}`,values,setHeaders());
+  
+        return response.data;
+      } catch (error) {
+        console.log(error);
+        toast.error(error.response?.data);
+      }
+    }
+  );
 
 
 

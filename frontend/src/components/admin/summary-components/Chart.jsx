@@ -37,7 +37,7 @@ const Chart = () =>{
                     };
                     
                 });
-                console.log(newData)
+                
                 setSales(newData)
                 setLoading(false)
                         

@@ -23,21 +23,34 @@ import Login from "./components/auth/Login";
 import Contact from './components/Contact';
 
 import Dashboard from "./components/admin/summary-components/Dashboard";
-import Product from "./components/admin/Detail/Product";
+// import Product from "./components/admin/Detail/Product";
 import Users from "./components/admin/summary-components/Users";
-import OrderDt from "./components/admin/Detail/OrderDetail";
+
 import Summary from "./components/admin/summary-components/Summary";
 import CreateProduct from "./components/admin/summary-components/CreateProduct";
+import CreateXkld from "./components/admin/summary-components/CreateXkld";
 import ProductsList from "./components/admin/list/Productslist";
-import UsersProfile from "./components/admin/Detail/UserProfile";
+import XkldsList from "./components/admin/list/Xkldslist";
+// import NhadatsList from "./components/admin/list/Nhadatslist";
+import UsersProfileUpdate from "./components/admin/Detail/UserProfileUpdate";
+import ProductDetail from "./components/admin/Detail/ProductDetail";
 import Products from "./components/admin/summary-components/Products";
+import Xklds from "./components/admin/summary-components/Xklds";
+import XkldScreen from './components/XkldScreen';
+import Nhadats from "./components/admin/summary-components/Nhadats";
 import Orders from "./components/admin/summary-components/Order";
 import OrdersDetail from "./components/admin/Detail/OrderDetail";
+import OrderScreen from './components/payment/OrderScreen';
 import OrderList from "./components/admin/list/Orderlist";
+import OrderListScreen from './components/payment/OrderListScreen';
 
 import Foots from "./components/foot";
 import Productss from './components/Products';
-
+import CheckoutSuccess from "./components/payment/CheckOutSucces";
+import ShippingAddressScreen from "./components/payment/ShipingAdressScreen"
+import MapScreen from './components/payment/MapScreen';
+import PaymentMethodScreen from './components/payment/PaymentMethodScreen';
+import PlaceOrderScreen from './components/payment/PlaceOrderScreen';
 
 
 
@@ -69,6 +82,9 @@ const App = () => {
     },
 
   };
+
+
+
   return (
 
 
@@ -79,38 +95,54 @@ const App = () => {
         <Header />
 
         <ToastContainer />
-       
+
 
         <Routes>
           <Route path="/" element={<Home />} />
-         
+          <Route path="/xklds" element={<XkldScreen />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<Productss />} />
-          <Route path="/contact" element={<Contact/>} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/singleproduct/:id" element={<SingleProduct />} />
-          {/* <Route path="/checkout-success" element={<CheckoutSuccess />} /> */}
+          <Route path="/productdetail/:id" element={<ProductDetail />} />
+          <Route path="/checkout-success" element={<CheckoutSuccess />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/order/:id" element={<OrderDt />} />
-          <Route path="/users/:id" element={<UsersProfile />} />
+          {/* <Route path="/product/:id" element={<Product />} /> */}
+
+          <Route path="/users/:id" element={<UsersProfileUpdate />} />
+          
           <Route path="/admin" element={<Dashboard />}>
             <Route path="summary" element={<Summary />} />
             <Route path="products" element={<Products />}>
               <Route index element={<ProductsList />} />
               <Route path="create-product" element={<CreateProduct />} />
             </Route>
+
+            <Route path="xklds" element={<Xklds />}>
+              <Route index element={<XkldsList />} />
+              <Route path="create-xkld" element={<CreateXkld/>} />
+            </Route>
+
             <Route path="users" element={<Users />} />
             <Route path="orders" element={<Orders />} />
             <Route index element={<OrderList />} />
-            <Route path="orders" element={<OrdersDetail />} />
+
+            {/* <Route path='orders' element={<OrderListScreen/>} /> */}
           </Route>
+          <Route path="/shipping" element={<ShippingAddressScreen />}
+          ></Route>
+
+          <Route path="/map" element={<MapScreen />}></Route>
+          <Route path="/payment" element={<PaymentMethodScreen />}></Route>
+          <Route path="/placeorder" element={<PlaceOrderScreen />} />
+          <Route path="/order/:id" element={<OrderScreen />}></Route>
+          <Route path="/orders/:id" element={<OrdersDetail />} />
 
 
-          
 
         </Routes>
-        <Foots/>
+        <Foots />
 
       </Router>
     </ThemeProvider>

@@ -58,7 +58,16 @@ router.get("/", isAdmin, async(req,res)=>{
 })
 
 router.post("/", auth, async (req, res) => {
-  const newOrder = new Order(req.body);
+  const newOrder = new Order({
+    orderItems: req.body.orderItems.map((x) => ({ ...x, products: x._id })),
+    shippingAddress: req.body.shippingAddress,
+    paymentMethod: req.body.paymentMethod,
+    itemsPrice: req.body.itemsPrice,
+    shippingPrice: req.body.shippingPrice,
+    taxPrice: req.body.taxPrice,
+    totalPrice: req.body.totalPrice,
+    user: req.user._id,
+  });
 
   try {
     const savedOrder = await newOrder.save();
@@ -84,11 +93,12 @@ router.put("/:id", isAdmin, async (req, res) => {
   }
 });
 
+
 //DELETE
 router.delete("/:id", isAdmin, async (req, res) => {
   try {
-    await Order.findByIdAndDelete(req.params._id);
-    res.status(200).send("Order has been deleted...");
+    const deleteOrders = await Order.findByIdAndDelete(req.params.id);
+    res.status(200).send(deleteOrders);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -108,14 +118,21 @@ router.get("/find/:userId", isUser, async (req, res) => {
 //GET AN ORDERS
 router.get("/findOne/:id", auth, isAdmin, async (req, res) => {
   try {
-    const orders = await Order.findById({orderId: req.params.id });
-    if (req.user._id !== orders.userId || !req.user.isAdmin)
-      return res.status(403).send("Access denied, Not authorized...");
-    res.status(200).send(orders);
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      res.send(order);
+    } else {
+      res.status(404).send({ message: 'Order Not Found' });
+    }
+  
+    
   } catch (err) {
     res.status(500).send(err);
+    console.log(err)
   }
 });
+
+
 
 
 
@@ -146,7 +163,7 @@ router.get("/income", async (req, res) => {
       {
         $project: {
           month: { $month: "$createdAt" },
-          sales: "$total",
+          sales: "$totalPrice",
         },
       },
       {
@@ -157,6 +174,7 @@ router.get("/income", async (req, res) => {
       },
     ]);
     res.status(200).send(income);
+    
   } catch (err) {
     res.status(500).send(err);
   }
@@ -179,7 +197,7 @@ router.get("/week", async(req, res) =>{
       {
           $project: {
               day: {$dayOfWeek:"$createdAt"},
-              sales: "$total",
+              sales: "$totalPrice",
           },
       },
       {
@@ -201,4 +219,65 @@ router.get("/week", async(req, res) =>{
   
 
 });
+
+router.put('/:id/deliver', auth, async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      order.isDelivered = true;
+      order.deliveredAt = Date.now();
+      await order.save();
+      res.send({ message: 'Order Delivered' });
+    } else {
+      res.status(404).send({ message: 'Order Not Found' });
+    }
+  });
+
+router.put('/:id/pay', auth, async (req, res) => {
+    const order = await Order.findById(req.params.id).populate(
+      'user',
+      'email name'
+    );
+    if (order) {
+      order.isPaid = true;
+      order.paidAt = Date.now();
+      order.paymentResult = {
+        id: req.body.id,
+        status: req.body.status,
+        update_time: req.body.update_time,
+        email_address: req.body.email_address,
+      };
+
+      const updatedOrder = await order.save();
+      mailgun()
+        .messages()
+        .send(
+          {
+            from: 'Amazona <amazona@mg.yourdomain.com>',
+            to: `${order.user.name} <${order.user.email}>`,
+            subject: `New order ${order._id}`,
+            html: payOrderEmailTemplate(order),
+          },
+          (error, body) => {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log(body);
+            }
+          }
+        );
+
+      res.send({ message: 'Order Paid', order: updatedOrder });
+    } else {
+      res.status(404).send({ message: 'Order Not Found' });
+    }
+  });
+  router.get('/:id', auth, async (req, res) => {
+      const order = await Order.findById(req.params.id);
+      if (order) {
+        res.send(order);
+      } else {
+        res.status(404).send({ message: 'Order Not Found' });
+      }
+    }
+  );
 module.exports = router;

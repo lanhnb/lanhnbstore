@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { url, setHeaders } from "./api";
+import { toast } from "react-toastify";
 
 const initialState ={
     list: [],
@@ -23,7 +24,7 @@ export const ordersEdit = createAsyncThunk(
         );
         const newOrder = {
             ...currentOrder[0],
-            delivery_status: values.delivery_status,
+            isDelivered: values.isDelivered,
         };
         try{
             const response = await axios.put(
@@ -37,6 +38,22 @@ export const ordersEdit = createAsyncThunk(
         }
     }
 );
+
+//delete Order
+
+export const ordersDelete = createAsyncThunk("orders/ordersDelete",async (_id) => {
+      try {
+        const response = await axios.delete(`${url}/orders/${_id}`, setHeaders());
+  
+        return response.data;
+      } catch (error) {
+        console.log(error);
+        toast.error(error.response.data);
+      }
+    }
+  );
+
+
 const ordersSlice = createSlice({
     name: "orders",
     initialState,

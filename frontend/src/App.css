@@ -107,6 +107,7 @@ div#mySidebar {
 }
 .main-product {
   margin-top: -46px;
+  float: left;
 }
 .home-container h2 {
   font-size: 40px;
@@ -429,5 +430,12 @@ p.text-center.p_f {
 }
 a#openClose {
   font-size: 33px;
+}
+.sort-filter {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+div#mySidebar {
+  height: 380px;
 }
 

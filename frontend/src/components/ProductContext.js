@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 // import { url } from "./api";
 
 
-const API1 = "http://localhost:5000/api/products";
- const API = "https://api.pujakaitem.com/api/products";
+const API = "http://localhost:5000/api/products";
+ const API1 = "https://api.pujakaitem.com/api/products";
 
 const AppContext = createContext();
 

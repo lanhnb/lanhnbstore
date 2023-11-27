@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { logoutUser } from "./slices/authSlice";
@@ -5,10 +6,14 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react'
 import { FaCartPlus } from "react-icons/fa";
-import { FaFighterJet } from "react-icons/fa";
+import { FaPlaneDeparture } from "react-icons/fa";
 import { FaHive } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
+import { FaRegistered } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
+import { FaTeamspeak } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -28,6 +33,8 @@ const NavBar = () => {
   const [isShown, setIsShown] = useState(false);
   const [isShown1, setIsShown1] = useState(false);
   const [hideF, sethideF] = useState(true)
+  const [mgr, setMgr] = useState("0px");
+
   const handleClick = event => {
     // 👇️ toggle shown state
     setIsShown1(current => !current);
@@ -35,8 +42,27 @@ const NavBar = () => {
     // 👇️ or simply set it to true
     // setIsShown(true);
     navigate("/")
-
+    
   };
+
+  const click = mgr => {
+    
+    setMgr("200px")
+  }
+    useEffect(() => {
+      document.getElementById('home11').style.marginLeft = mgr
+      // document.body.style.marginLeft = mgr
+    }, [mgr])
+    const click1 = mgr => {
+    
+      setMgr("0px")
+    }
+      useEffect(() => {
+        document.getElementById('home11').style.marginLeft = mgr
+        // document.body.style.marginLeft = mgr
+      }, [mgr])
+  
+  
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -60,11 +86,11 @@ const NavBar = () => {
       bgcolor: 'background.paper',
       border: '2px solid #000',
       boxShadow: 24,
-      
+
       px: 4,
-     
-      height:'100%',
-      display:'block',
+
+      height: '100%',
+      display: 'block',
       overflow: 'scroll',
     };
 
@@ -79,10 +105,10 @@ const NavBar = () => {
         >
           <Box sx={{ ...style }}>
             <div className="w3 d-flex">
-            <h3 id="child-modal-title">Chính sách khách hàng</h3>
-            <p>
-            <Button className="w3-red" id="btnR" onClick={handleClose}>Close</Button>
-            </p>
+              <h3 id="child-modal-title">CHÍNH SÁCH KHÁCH HÀNG</h3>
+              <p>
+                <Link style={{ "margin": "10px" }} className="w3-red" id="btnR" to="/"><FaTimes /></Link>
+              </p>
             </div>
             <p id="child-modal-description">
 
@@ -191,94 +217,103 @@ const NavBar = () => {
 
   return (
     <>
-    <nav className="nav-bar">
-      <Link className="menu11">
+      <nav className="nav-bar">
+        <Link className="menu11">
 
 
-        <Link id="openClose" onClick={handleClick}><span onClick={() => sethideF(!hideF)}>
-          {hideF ? <FaList /> : <FaTimes />}
-        </span>
+          <Link id="openClose" onClick={handleClick}><span onClick={() => sethideF(!hideF)}>
 
-        </Link>
-        <Link to="/">
-          <img src="https://res.cloudinary.com/dxnhv54sl/image/upload/v1695431219/logo/epiu3addc0ing9mk4l2p.png" className="logo1" alt="logo1" />
-        </Link>
-      </Link>
-
-      <Link to="/cart">
-        <div className="nav-bag">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
-            fill="currentColor"
-            className="bi bi-handbag-fill"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 1 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 5H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11v1.5a.5.5 0 0 1-1 0V5H6v1.5a.5.5 0 0 1-1 0V5z" />
-          </svg>
-          <span className="bag-quantity">
-            <span>{cartTotalQuantity}</span>
+            {hideF ? <FaList onClick={()=>{click("200px")}} /> : <FaList onClick={()=>{click1("0px")}}/>}
           </span>
-        </div>
-      </Link>
-      <Link to="/" className="lanb">Lanhnb.store</Link>
-    </nav>
 
-    {
-    isShown1 && (
-      <div id="mySidebar" className="w3-sidebar w3-bar-block w3-border-right w3-animate-left"
-      >
-        <Link to="/" className="w3-bar-item w3-button w3-border-bottom w3-large">
-          <img className="w3-circle" src="https://res.cloudinary.com/dxnhv54sl/image/upload/v1695458829/logo/tjxcmynwrh3tiwqmx9yg.jpg" alt='name' /></Link>
+           {/* <button onClick={()=>{click("200px")}}>change color</button>  */}
+            
+            </Link>
+            <Link to="/">
+              <img src="https://res.cloudinary.com/dxnhv54sl/image/upload/v1695431219/logo/epiu3addc0ing9mk4l2p.png" className="logo1" alt="logo1" />
+            </Link>
+          </Link>
 
-
-        <Link to="/" className="w3-bar-item w3-button w3-red">Home</Link>
-        <Link to="/nhadat" className="w3-bar-item w3-button"> <FaHive />  Nhà đất</Link>
-        <Link to="/xkld" className="w3-bar-item w3-button"><FaFighterJet />  Xuất khẩu lao động</Link>
-        <Link to="/products" className="w3-bar-item w3-button"><FaCartPlus /> Shop</Link>
-        <Link to="/contact" className="w3-bar-item w3-button"><FaCartPlus /> Contact</Link>
-
-
-        {auth._id ? (
-          <Links>
-
-            {auth.isAdmin ? (
-              <div>
-                <Link to="/admin/summary">Admin</Link>
-              </div>
-            ) : null}
-            <div
-              onClick={() => {
-                dispatch(logoutUser(null));
-                toast.warning("Logged out!", { position: "bottom-left" });
-              }}
-            >
-              Logout
+          <Link to="/cart">
+            <div className="nav-bag">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                fill="currentColor"
+                className="bi bi-handbag-fill"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 1 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 5H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11v1.5a.5.5 0 0 1-1 0V5H6v1.5a.5.5 0 0 1-1 0V5z" />
+              </svg>
+              <span className="bag-quantity">
+                <span>{cartTotalQuantity}</span>
+              </span>
             </div>
-          </Links>
-        ) : (
-          <AuthLinks>
-            <p>
-              <Link to="/login">Login</Link>
-            </p>
-            <Link to="register">Register</Link>
+          </Link>
+          <Link to="/" className="lanb">Lanhnb.store</Link>
+      </nav>
 
-          </AuthLinks>
-        )}
-
-
-
-        <Button className="w3-bar-item w3-button w3-red"> <ChildModal /> </Button>
-      </div>
+      {
+        isShown1 && (
+          <div id="mySidebar" className="w3-sidebar w3-bar-block w3-border-right w3-animate-left"
+          >
+            <Link to="/" className="w3-bar-item w3-button w3-border-bottom w3-large">
+              <img className="w3-circle" src="https://res.cloudinary.com/dxnhv54sl/image/upload/v1695458829/logo/tjxcmynwrh3tiwqmx9yg.jpg" alt='name' /></Link>
 
 
+            <Link to="/" className="w3-bar-item w3-button w3-red" onClick={handleClick}>Home</Link>
+            <Link to="/nhadat" className="w3-bar-item w3-button" onClick={handleClick}> <FaHive />  Nhà đất</Link>
+            <Link to="/xkld" className="w3-bar-item w3-button" onClick={handleClick}><FaPlaneDeparture />  Xuất khẩu lao động</Link>
+            <Link to="/products" className="w3-bar-item w3-button" onClick={handleClick}><FaCartPlus /> Shop</Link>
+            <Link to="/contact" onClick={handleClick} className="w3-bar-item w3-button"><FaTeamspeak /> Contact</Link>
 
 
-    )
-  }
+            {auth._id ? (
+              <Links>
+                <div className="amin">
+                  {auth.isAdmin ? (
 
-</>
+                    <div>
+                      <Link to="/admin/summary" onClick={handleClick}>Admin</Link>
+                    </div>
+                  ) : null}
+                  <div
+                    onClick={() => {
+                      dispatch(logoutUser(null));
+                      toast.warning("Logged out!", { position: "bottom-left" });
+                    }}
+                  >
+                    <FaSignOutAlt />Logout
+                  </div>
+                </div>
+              </Links>
+            ) : (
+              <div className="amin">
+                <AuthLinks>
+
+                  <Link to="/login" className="login"><FaSignInAlt />  Login</Link>
+
+                  <Link to="register"><FaRegistered />  Register</Link>
+
+                </AuthLinks>
+              </div>
+            )}
+
+
+
+            <div className="w3-bar-item w3-button w3-red" > <ChildModal /> </div>
+           
+          </div>
+
+
+
+
+        )
+      }
+
+
+    </>
   )
 }
 
@@ -287,6 +322,11 @@ export default NavBar;
 
 
 const AuthLinks = styled.div`
+
+.login{
+  margin-left:15px;
+  margin-right:5px;
+}
 h3#child-modal-title {
   color: red;
   font-weight: bold;
@@ -327,4 +367,13 @@ const Links = styled.div`
   img.logo1 {
     height: 35px;
 }
+.amin{
+  color:black;
+  margin-left:20px;
+  margin-bottom:10px;
+  margin-top: 10px;
+  font-size:15px;
+  display:inline-flex;
+}
+
 `;

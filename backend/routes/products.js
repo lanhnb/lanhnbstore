@@ -1,6 +1,4 @@
 const { Product } = require("../models/product");
-const { Xkld } = require("../models/xkld");
-const { NhaDat } = require("../models/nhadat");
 const { isAdmin } = require("../middleware/auth");
 const cloudinary = require("../utils/cloudinary");
 
@@ -17,10 +15,6 @@ router.post("/create", isAdmin, async (req, res) => {
     //   const uploadedResponse = await cloudinary.uploader.upload(image, {
     //     upload_preset: "lanhnb2",
     //   });
-
-      
-
-
       if (image) {
         const product = new Product({
           name,
@@ -36,11 +30,8 @@ router.post("/create", isAdmin, async (req, res) => {
           image,
          
         });
-
-
         const savedProduct = await product.save();
         res.status(200).send(savedProduct);
-
       }
       
     }

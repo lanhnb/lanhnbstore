@@ -1,54 +1,80 @@
 import styled from "styled-components";
 import { Outlet, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {FaUsers, FaChartBar, FaClipboard, FaUser, FaStore, FaTachometerAlt, FaProductHunt} from "react-icons/fa";
+import { FaUsers, FaChartBar, FaClipboard, FaUser, FaStore, FaTachometerAlt, FaProductHunt } from "react-icons/fa";
 
 
 const Dashboard = () => {
   const auth = useSelector((state) => state.auth);
-  
-  if (!auth.isAdmin) return <p>Access denied. Not an Admin!</p>;
+
+  if (!auth.isAdmin) return <div id="home11"><p>Access denied. Not an Admin!</p></div>;
 
   return (
     <StyledDashboard>
-      <SideNav>
-        <h3>Quick Links</h3>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-inactive"
-          }
-          to="/admin/summary"
-        >
-          <FaTachometerAlt/> Summary
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-inactive"
-          }
-          to="/admin/products"
-        >
-          <FaProductHunt/> Products
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-inactive"
-          }
-          to="/admin/orders"
-        >
-         <FaStore/>  Orders
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-inactive"
-          }
-          to="/admin/users"
-        >
-          <FaUsers/>  Users
-        </NavLink>
-      </SideNav>
-      <Content>
-        <Outlet />
-      </Content>
+     
+
+        <div id="home11" className="w3-col m3 s3">
+          <SideNav id="si1">
+            <h3>Quick Links</h3>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "link-active" : "link-inactive"
+              }
+              to="/admin/summary"
+            >
+              <FaTachometerAlt /> Summary
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "link-active" : "link-inactive"
+              }
+              to="/admin/products"
+            >
+              <FaProductHunt /> Products
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "link-active" : "link-inactive"
+              }
+              to="/admin/orders"
+            >
+              <FaStore />  Orders
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "link-active" : "link-inactive"
+              }
+              to="/admin/users"
+            >
+              <FaUsers />  Users
+            </NavLink>
+
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "link-active" : "link-inactive"
+              }
+              to="/admin/xklds"
+            >
+              <FaStore />  Labor services
+            </NavLink>
+
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "link-active" : "link-inactive"
+              }
+              to="/admin/nhadats"
+            >
+              <FaStore /> Real estates
+            </NavLink>
+
+          </SideNav>
+        </div>
+
+        <Content>
+          <Outlet />
+        </Content>
+    
+
     </StyledDashboard>
   );
 };
@@ -56,17 +82,23 @@ const Dashboard = () => {
 export default Dashboard;
 
 const StyledDashboard = styled.div`
+
+#si1{
+  display:flex;
+}
+
   display: flex;
   height: 100vh;
+}
 `;
 
 const SideNav = styled.div`
   border-right: 1px solid gray;
-  height: calc(100vh - 70px);
-  position: fixed;
+  
+  
   overflow-y: auto;
-  width: 200px;
-  display: flex;
+  
+  
   flex-direction: column;
   padding: 2rem;
 
@@ -85,7 +117,7 @@ const SideNav = styled.div`
 `;
 
 const Content = styled.div`
-  margin-left: 200px;
+  
   padding: 2rem 3rem;
   width: 100%;
 `;

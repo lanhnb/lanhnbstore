@@ -56,9 +56,7 @@ export default function UserList() {
         renderCell:(params)=>{
             return(
                 <Actions>
-                    
                     <Delete className='button' onClick={()=>handleDelete(params.row.id)}> Delete </Delete>
-                                  
                     <View className='button' onClick={()=> navigate(`/users/${params.row.id}`)}> View </View>
                     
                 </Actions>
@@ -67,8 +65,9 @@ export default function UserList() {
         
         },
     ];
-    const handleDelete = (id)=>{
-        dispatch(userDelete(id));
+    const handleDelete = (_id)=>{
+        if (window.confirm('Are you sure to delete?')){
+        dispatch(userDelete(_id));}
     };
 
     return (
@@ -126,6 +125,11 @@ export default function UserList() {
         border-radius: 3px;
         font-size: 14px;
     `;
+    const EditUsersBtn= styled.div`
+    color: grb(255, 64, 0);
+    background-color: rgb(255, 64, 0, 0.12);
+
+    `
 
 
 

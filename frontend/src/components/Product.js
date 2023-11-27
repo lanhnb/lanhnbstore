@@ -23,7 +23,7 @@ const Product = (product) => {
 
                 <figure>
                     <NavLink to={`/singleproduct/${_id}`}>
-                        <img src={image} alt={name} />
+                        <img src={image?.[0].url} alt={name} />
                         {price-priceOff>0 ? (<figcaption className="caption">Off:{((price-priceOff)/price*100).toFixed(2)}% </figcaption>):("")}
                         
                     </NavLink>

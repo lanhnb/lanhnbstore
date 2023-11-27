@@ -78,7 +78,8 @@ const FilterSmal = () => {
                                 />
                             </form>
                         </div>
-                    </div></SwiperSlide>
+                    </div>
+                    </SwiperSlide>
                     <SwiperSlide><div className="col col-12">
                         <div className="filter-category">
                             <h3> Category</h3>
@@ -176,9 +177,9 @@ const FilterSmal = () => {
 
                     </div></SwiperSlide>
                     <SwiperSlide>
-                        
+
                         <div className="Clear_button">
-                        <p>Clear Filter</p>
+                            <p>Clear Filter</p>
                             <Button className="btn" onClick={clearFilters}>Clear Filter</Button>
 
                         </div>

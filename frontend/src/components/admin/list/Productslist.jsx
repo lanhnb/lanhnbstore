@@ -59,26 +59,27 @@ const columns = [
                 <Delete className='button' onClick={()=>handleDelete(params.row.id)}> Delete </Delete>
                 <EditProduct productId = {params.row.id}/>
                 
-                <View className='button' onClick={()=> navigate(`/product/${params.row.id}`)}> View </View>
+                <View className='button' onClick={()=> navigate(`/productdetail/${params.row.id}`)}> View </View>
                 
             </Actions>
         )
     } 
-      
+    
     },
   ];
    const handleDelete = (_id)=>{
-    dispatch(productsDelete(_id));
+    if (window.confirm('Are you sure to delete?')){
+    dispatch(productsDelete(_id));}
    };
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 650, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
+            paginationModel: { page: 0, pageSize: 10 },
           },
         }}
         pageSizeOptions={[5, 10]}

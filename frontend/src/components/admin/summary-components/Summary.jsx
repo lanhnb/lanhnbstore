@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import {FaUsers, FaChartBar, FaClipboard} from "react-icons/fa";
+import { FaUsers, FaChartBar, FaClipboard } from "react-icons/fa";
 import Widget from "./Widget";
 import axios from "axios";
 import { setHeaders, url } from "../../slices/api";
@@ -22,29 +22,30 @@ const Summary = () => {
 
   // console.log("users", orders);
   // console.log("ordersP", ordersPerc);
-  
 
-  function compare(a,b){
-    if(a.id < b.id){
+
+  function compare(a, b) {
+    if (a.id < b.id) {
       return 1
     }
-    if(a.id > b.id){
+    if (a.id > b.id) {
       return -1
     }
     return 0;
 
   }
   // User Stats
-  useEffect(() =>{
-    async function fetchData(){
-      try{
-        const res =  await axios.get(`${url}/users/stats`, setHeaders())
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(`${url}/users/stats`, setHeaders())
 
         res.data.sort(compare)
+        console.log(res.data)
         setUser(res.data);
-        setUsersPerc((res.data[0].total - res.data[1].total)/res.data[1].total*100);
+        setUsersPerc((res.data[0].total - res.data[1].total) / res.data[1].total * 100);
 
-      }catch(err){
+      } catch (err) {
         console.log(err)
       }
 
@@ -52,16 +53,16 @@ const Summary = () => {
     fetchData()
   }, [])
 
-  useEffect(() =>{
-    async function fetchData(){
-      try{
-        const res =  await axios.get(`${url}/orders/stats`, setHeaders())
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(`${url}/orders/stats`, setHeaders())
 
         res.data.sort(compare)
         setOrders(res.data);
-        setOrdersPerc((res.data[0].total - res.data[1].total)/res.data[1].total*100);
+        setOrdersPerc((res.data[0].total - res.data[1].total) / res.data[1].total * 100);
 
-      }catch(err){
+      } catch (err) {
         console.log(err)
       }
 
@@ -69,16 +70,17 @@ const Summary = () => {
     fetchData()
   }, [])
 
- //Income Stats
-  useEffect(() =>{
-    async function fetchData(){
-      try{
-        const res =  await axios.get(`${url}/orders/income`, setHeaders())
+  //Income Stats
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(`${url}/orders/income`, setHeaders())
 
         res.data.sort(compare)
-        setIncome(res.data);
-        setIncomePerc((res.data[0].total - res.data[1].total)/res.data[1].total*100);
-        }catch(err){
+
+        setIncome(res.data[0].total);
+        setIncomePerc((res.data[0].total - res.data[1].total) / res.data[1].total * 100);
+      } catch (err) {
         console.log(err)
       }
 
@@ -89,71 +91,94 @@ const Summary = () => {
 
   const data = [
     {
-    icon: <FaUsers/>,
-    digits: users[0]?.total,
-    isMoney: false,
-    title: "Users",
-    color: "rgb(120, 108, 255)",
-    bgcolor:"rgb(102 , 108, 255, 0.12)",
-    percentage: usersPerc,
-  },
-  {
-    icon: <FaChartBar/>,
-    digits: orders[0]?.total,
-    isMoney: false,
-    title: "Orders",
-    color: "rgb(0, 191, 255)",
-    bgcolor:"rgb(0, 191, 255, 0.12)",
-    percentage: ordersPerc,
-  },
-  {
-    icon: <FaClipboard/>,
-    digits: income[0]?.total ? income[0]?.total:" ",
-    isMoney: true,
-    title: "Earnings",
-    color: "rgb(255, 191, 0)",
-    bgcolor:"rgb(255, 191, 0, 0.12)",
-    percentage: incomePerc,
-  }
+      icon: <FaUsers />,
+      digits: users[0]?.total,
+      isMoney: false,
+      title: "Users",
+      color: "rgb(120, 108, 255)",
+      bgcolor: "rgb(102 , 108, 255, 0.12)",
+      percentage: usersPerc,
+    },
+    {
+      icon: <FaChartBar />,
+      digits: orders[0]?.total,
+      isMoney: false,
+      title: "Orders",
+      color: "rgb(0, 191, 255)",
+      bgcolor: "rgb(0, 191, 255, 0.12)",
+      percentage: ordersPerc,
+    },
+    {
+      icon: <FaClipboard />,
+      digits: income,
+      isMoney: true,
+      title: "Earnings",
+      color: "rgb(255, 191, 0)",
+      bgcolor: "rgb(255, 191, 0, 0.12)",
+      percentage: incomePerc,
+    }
 
-]
-    return (
+  ]
+  return (
     <>
-    <StyledSummary>
-      <MainStats>
-        <Overview>
-          <Title>
-            <h2> Overview</h2>
-            <p>Compared to the previous month</p>
-          </Title>
-          <WidgetWrapper>
-            {data?.map((data, index)=><Widget key={index} data={data} />)}
-          </WidgetWrapper>
-        </Overview>
-        <Chart/>
-      </MainStats>
-      <SlideStats>
-        <Transactions/>
-        
-        <AllTimeData/>
-      </SlideStats>
-    </StyledSummary>
-    
+
+      <StyledSummary>
+        <div className="row" id="home11">
+
+
+          <div id="si2" className="w3-col s12 m8">
+
+            <Overview>
+              <Title>
+                <h2> Overview</h2>
+                <p>Compared to the previous month</p>
+              </Title>
+              <div id="si3" className="w3-col s12 m12">
+                <WidgetWrapper>
+                  {data?.map((data, index) => <Widget key={index} data={data} />)}
+                </WidgetWrapper>
+              </div>
+            </Overview>
+
+            <div id="si4" w3-col >
+              <Chart />
+            </div>
+          </div>
+
+
+          <div className="w3-col s12 m4">
+            <SlideStats>
+              <Transactions />
+
+              <AllTimeData />
+            </SlideStats>
+          </div>
+
+        </div>
+
+
+
+
+
+      </StyledSummary >
+
     </>
-    )
-  };
-  
-  export default Summary;
+  )
+};
+
+export default Summary;
 
 const StyledSummary = styled.div`
-  width: 100%;
-  display: flex;
-  `;
+div#si4 {
 
-const MainStats = styled.div`
-  flex: 2;
-  width: 100%;
+  
+
+
+#si2{
+  display:flex;
+}
 `;
+
 const Title = styled.div`
   color: #f5deb3;
   p{
@@ -168,16 +193,15 @@ const Title = styled.div`
 
 
 const WidgetWrapper = styled.div`
+margin-top:-20px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   `;
 const SlideStats = styled.div`
-  flex:1;
-  
-  flex-directions: column;
-  margin-left: 2rem;
-  width: 100%;`
+margin-top:10px;
+`;
+
 
 const Overview = styled.div`
   width: 100%;
@@ -189,4 +213,3 @@ const Overview = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
-  
